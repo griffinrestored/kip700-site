@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard | KIP700</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="bar wrap"><a class="logo" href="index.html">KIP700</a><nav><a href="index.html#pricing">Plans</a></nav></header>
+<main class="wrap app">
+  <h1 class="t">Your dashboard</h1>
+  <p class="sub">Upload a sales file (CSV or Excel). It is read in your browser and never uploaded anywhere.</p>
+
+  <section class="drop" id="drop">
+    <label class="btn" for="file">Choose a file</label>
+    <input id="file" type="file" accept=".csv,.tsv,.txt,.xlsx,.xls" hidden>
+    <span class="or">or drop it here</span>
+    <button class="btn ghost" id="sampleBtn" type="button">Try sample data</button>
+  </section>
+  <p id="msg" class="msg" role="status"></p>
+
+  <section id="mapping" hidden>
+    <h2>Match your columns</h2>
+    <p class="sub">We guessed from your headers. Fix any that are wrong. Only date and sales (or price) are required.</p>
+    <div id="mapGrid" class="mapgrid"></div>
+    <div class="opts">
+      <label>Currency <input id="cur" value="KES" maxlength="5"></label>
+      <label>Dates are written <select id="dfirst"><option value="1">day first (25/12/2026)</option><option value="0">month first (12/25/2026)</option></select></label>
+    </div>
+  </section>
+
+  <section id="out" hidden>
+    <div class="opts"><label>From <input type="date" id="from"></label><label>To <input type="date" id="to"></label></div>
+    <div id="kpis" class="kpigrid"></div>
+    <h2>Monthly sales</h2>
+    <div id="chart" class="chart"></div>
+    <div id="tables" class="tables"></div>
+
+    <section id="premium" class="prem">
+      <h2>Premium reports</h2>
+      <div id="lock" class="lock">
+        <p>Unlock net profit from expenses, customer insights, stock alerts and a printable monthly report.</p>
+        <div class="opts"><label>Licence key <input id="key" placeholder="KIP-XXXX-XXXX-XXXX" autocomplete="off"></label><button class="btn" id="unlock" type="button">Unlock</button><a class="btn ghost" id="getKey" href="index.html#pricing">Get a key</a></div>
+        <p id="keyMsg" class="msg" role="status"></p>
+      </div>
+      <div id="pro" hidden>
+        <div class="opts"><button class="btn" id="printBtn" type="button">Print report</button><button class="btn ghost" id="removeKey" type="button">Remove key</button></div>
+        <div id="printHead" class="only-print"></div>
+        <div id="summary"></div>
+        <h2>Expenses and net profit</h2>
+        <div class="opts"><label>Expenses file (date, category, amount)<input type="file" id="expFile" accept=".csv,.tsv,.txt,.xlsx,.xls"></label><button class="btn ghost" id="expSample" type="button">Try sample expenses</button></div>
+        <div id="expMap" class="mapgrid"></div><div id="expOut"></div>
+        <h2>Customer insights</h2><div id="custOut"></div>
+        <h2>Stock alerts</h2>
+        <div class="opts"><label>Stock file (product, stock on hand)<input type="file" id="stockFile" accept=".csv,.tsv,.txt,.xlsx,.xls"></label><label>Warn when under (days)<input type="number" id="thr" value="14" min="1"></label><button class="btn ghost" id="stockSample" type="button">Try sample stock</button></div>
+        <div id="stockMap" class="mapgrid"></div><div id="stockOut"></div>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="wrap foot"><span>KIP700</span><span>Your data stays on your device.</span></footer>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="premium.js"></script>
+</body>
+</html>
